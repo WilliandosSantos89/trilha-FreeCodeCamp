@@ -73,25 +73,25 @@
     /* ---- Overlays ---- */
     .grid-overlay{
       position:fixed;inset:0;pointer-events:none;z-index:0;
-      background-image:linear-gradient(to right,#18181b 1px,transparent 1px),
-                       linear-gradient(to bottom,#18181b 1px,transparent 1px);
+      background-image:linear-gradient(to right,var(--grid-line) 1px,transparent 1px),
+                       linear-gradient(to bottom,var(--grid-line) 1px,transparent 1px);
       background-size:60px 60px;
       mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 40%,transparent 90%);
       -webkit-mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 40%,transparent 90%);
-      opacity:.35;
+      opacity:var(--grid-op);
     }
     .radial-glow{
       position:fixed;pointer-events:none;z-index:0;
       width:900px;height:900px;top:-320px;right:-260px;
       background:radial-gradient(circle,var(--accent-glow) 0%,transparent 60%);
-      mix-blend-mode:screen;
+      mix-blend-mode:var(--glow-blend);
     }
     .scanlines{
       position:fixed;inset:0;pointer-events:none;z-index:1;
       background:linear-gradient(rgba(18,16,16,0) 50%,rgba(0,0,0,.15) 50%),
                  linear-gradient(90deg,rgba(255,0,0,.03),rgba(0,255,0,.01),rgba(0,0,255,.03));
       background-size:100% 2px,3px 100%;
-      opacity:.35;
+      opacity:var(--scanline-op);
     }
 
     /* ---- Shell ---- */
@@ -102,7 +102,7 @@
     .topbar{
       display:flex;align-items:center;justify-content:space-between;
       height:70px;border-bottom:1px solid var(--line);
-      background:rgba(5,5,5,.72);backdrop-filter:blur(8px);
+      background:var(--topbar-bg);backdrop-filter:blur(8px);
       position:sticky;top:0;z-index:20;
     }
     .brand{display:flex;align-items:center;gap:10px;color:var(--text);text-decoration:none}
@@ -156,7 +156,7 @@
       font-family:'JetBrains Mono',monospace;font-size:.75rem;letter-spacing:.14em;
       text-transform:uppercase;font-weight:500;border:1px solid transparent;transition:.15s;
     }
-    .btn-primary{background:var(--accent);color:#0a0a0a;border-color:var(--accent)}
+    .btn-primary{background:var(--accent);color:var(--btn-primary-fg);border-color:var(--accent)}
     .btn-primary:hover{background:var(--accent-strong);border-color:var(--accent-strong)}
     .btn-ghost{color:var(--text);border-color:var(--line-strong);background:transparent}
     .btn-ghost:hover{border-color:var(--text)}
@@ -195,7 +195,7 @@
       background:radial-gradient(circle at 100% 0%,var(--accent-glow),transparent 60%);
       opacity:0;transition:opacity .3s;
     }
-    .track:hover{background:#0d0d0d;border-color:var(--accent)}
+    .track:hover{background:var(--surface-hover);border-color:var(--accent)}
     .track:hover::before{opacity:1}
     .track-top{display:flex;align-items:center;justify-content:space-between}
     .track-icon{
@@ -250,7 +250,7 @@
       background:var(--surface);display:flex;flex-direction:column;min-height:230px;
       transition:background .2s;position:relative;
     }
-    .course:hover{background:#0d0d0d}
+    .course:hover{background:var(--surface-hover)}
     .course-meta{display:flex;justify-content:space-between;align-items:center;gap:10px}
     .tag{
       font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;
