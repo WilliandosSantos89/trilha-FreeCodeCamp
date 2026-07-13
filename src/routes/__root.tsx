@@ -143,16 +143,16 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="relative min-h-screen transition-colors" style={{ background: "var(--bg)", color: "var(--text)" }}>
+      <div className="relative min-h-screen transition-colors" style={{ background: "var(--fcc-bg)", color: "var(--fcc-text)" }}>
         <header className="fixed top-0 right-0 z-50 p-4">
           <button
             onClick={() => setIsDark((d) => !d)}
             className="inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] transition-colors"
             style={{
               fontFamily: "'JetBrains Mono',monospace",
-              background: "var(--surface)",
-              color: "var(--text)",
-              border: "1px solid var(--line-strong)",
+              background: "var(--fcc-surface)",
+              color: "var(--fcc-text)",
+              border: "1px solid var(--fcc-line-strong)",
             }}
             aria-label={isDark ? "Mudar para tema claro" : "Mudar para tema escuro"}
           >

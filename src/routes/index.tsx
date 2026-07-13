@@ -31,19 +31,19 @@ function Index() {
       <section className="relative z-[2] mx-auto w-[min(1240px,calc(100%-40px))] pt-28 pb-16">
         <p
           className="mb-6 text-[0.72rem] uppercase tracking-[0.18em]"
-          style={{ fontFamily: "'JetBrains Mono',monospace", color: "var(--accent)" }}
+          style={{ fontFamily: "'JetBrains Mono',monospace", color: "var(--fcc-accent)" }}
         >
           // freeCodeCamp · Português · V.01
         </p>
         <h1
           className="display text-5xl sm:text-6xl md:text-7xl font-bold"
-          style={{ color: "var(--text)" }}
+          style={{ color: "var(--fcc-text)" }}
         >
-          Trilhas de estudo do <span style={{ color: "var(--accent)" }}>freeCodeCamp</span>
+          Trilhas de estudo do <span style={{ color: "var(--fcc-accent)" }}>freeCodeCamp</span>
         </h1>
         <p
           className="mt-8 max-w-3xl text-lg leading-relaxed"
-          style={{ color: "var(--muted)" }}
+          style={{ color: "var(--fcc-muted)" }}
         >
           Este projeto reúne trilhas de estudo curadas para quem quer aprender programação com o
           freeCodeCamp em português. Cada trilha organiza cursos, vídeos e projetos em uma sequência
@@ -51,7 +51,7 @@ function Index() {
         </p>
         <p
           className="mt-4 max-w-3xl text-lg leading-relaxed"
-          style={{ color: "var(--muted)" }}
+          style={{ color: "var(--fcc-muted)" }}
         >
           A ideia é resolver um problema comum de quem começa sozinho: o excesso de conteúdo
           espalhado. Em vez de escolher aleatoriamente por onde começar, você segue uma trilha
@@ -64,9 +64,9 @@ function Index() {
             className="inline-flex items-center gap-3 px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em] transition-colors"
             style={{
               fontFamily: "'JetBrains Mono',monospace",
-              background: "var(--accent)",
-              color: "var(--btn-primary-fg)",
-              border: "1px solid var(--accent)",
+              background: "var(--fcc-accent)",
+              color: "var(--fcc-btn-primary-fg)",
+              border: "1px solid var(--fcc-accent)",
             }}
           >
             <span>Começar a aprender</span>
@@ -85,18 +85,18 @@ function CreditsFooter() {
     <footer
       className="relative z-[2] mx-auto mt-8 flex w-[min(1240px,calc(100%-40px))] flex-col gap-4 border-t py-9 md:flex-row md:items-center md:justify-between"
       style={{
-        borderColor: "var(--line)",
+        borderColor: "var(--fcc-line)",
         fontFamily: "'JetBrains Mono',monospace",
         fontSize: ".7rem",
         letterSpacing: ".14em",
         textTransform: "uppercase",
-        color: "var(--dim)",
+        color: "var(--fcc-dim)",
       }}
     >
       <div className="flex items-center gap-3">
         <span
           className="inline-flex h-[22px] w-[22px] items-center justify-center border text-[.6rem]"
-          style={{ borderColor: "var(--line-strong)", color: "var(--accent)", background: "var(--surface)" }}
+          style={{ borderColor: "var(--fcc-line-strong)", color: "var(--fcc-accent)", background: "var(--fcc-surface)" }}
         >
           {"</>"}
         </span>
