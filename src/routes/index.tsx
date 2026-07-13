@@ -43,8 +43,8 @@ function Index() {
         <p className="mt-4 text-lg leading-relaxed text-neutral-700">
           A ideia é resolver um problema comum de quem começa sozinho: o excesso
           de conteúdo espalhado. Em vez de escolher aleatoriamente por onde
-          começar, você segue uma trilha temática — desenvolvimento web,
-          fundamentos de programação, dados, e mais — com marcos claros de
+          começar, você segue uma trilha temática: desenvolvimento web,
+          fundamentos de programação, dados, e mais, com marcos claros de
           progresso e links diretos para o material oficial do freeCodeCamp.
         </p>
         <div className="mt-10">
