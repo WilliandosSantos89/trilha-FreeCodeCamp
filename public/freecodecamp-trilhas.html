@@ -1,6 +1,15 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
 <head>
+  <script>
+    (function(){
+      try{
+        var saved = localStorage.getItem('fccpath-theme');
+        var pref = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        document.documentElement.setAttribute('data-theme', pref);
+      }catch(e){}
+    })();
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FCC/PATH — Trilhas de estudo do freeCodeCamp em português</title>
@@ -26,7 +35,35 @@
       --accent:#ea580c;
       --accent-strong:#f97316;
       --accent-glow:rgba(234,88,12,.15);
+      --grid-line:#18181b;
+      --topbar-bg:rgba(5,5,5,.72);
+      --surface-hover:#0d0d0d;
+      --scanline-op:.35;
+      --grid-op:.35;
+      --glow-blend:screen;
+      --btn-primary-fg:#0a0a0a;
     }
+    [data-theme="light"]{
+      --bg:#fafaf9;
+      --surface:#ffffff;
+      --surface-2:#f4f4f5;
+      --line:#e4e4e7;
+      --line-strong:#a1a1aa;
+      --text:#0a0a0a;
+      --muted:#52525b;
+      --dim:#a1a1aa;
+      --accent:#ea580c;
+      --accent-strong:#c2410c;
+      --accent-glow:rgba(234,88,12,.14);
+      --grid-line:#e7e5e4;
+      --topbar-bg:rgba(250,250,249,.78);
+      --surface-hover:#fafaf9;
+      --scanline-op:.08;
+      --grid-op:.55;
+      --glow-blend:multiply;
+      --btn-primary-fg:#fafafa;
+    }
+
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
@@ -45,25 +82,25 @@
     /* ---- Overlays ---- */
     .grid-overlay{
       position:fixed;inset:0;pointer-events:none;z-index:0;
-      background-image:linear-gradient(to right,#18181b 1px,transparent 1px),
-                       linear-gradient(to bottom,#18181b 1px,transparent 1px);
+      background-image:linear-gradient(to right,var(--grid-line) 1px,transparent 1px),
+                       linear-gradient(to bottom,var(--grid-line) 1px,transparent 1px);
       background-size:60px 60px;
       mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 40%,transparent 90%);
       -webkit-mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 40%,transparent 90%);
-      opacity:.35;
+      opacity:var(--grid-op);
     }
     .radial-glow{
       position:fixed;pointer-events:none;z-index:0;
       width:900px;height:900px;top:-320px;right:-260px;
       background:radial-gradient(circle,var(--accent-glow) 0%,transparent 60%);
-      mix-blend-mode:screen;
+      mix-blend-mode:var(--glow-blend);
     }
     .scanlines{
       position:fixed;inset:0;pointer-events:none;z-index:1;
       background:linear-gradient(rgba(18,16,16,0) 50%,rgba(0,0,0,.15) 50%),
                  linear-gradient(90deg,rgba(255,0,0,.03),rgba(0,255,0,.01),rgba(0,0,255,.03));
       background-size:100% 2px,3px 100%;
-      opacity:.35;
+      opacity:var(--scanline-op);
     }
 
     /* ---- Shell ---- */
@@ -74,7 +111,7 @@
     .topbar{
       display:flex;align-items:center;justify-content:space-between;
       height:70px;border-bottom:1px solid var(--line);
-      background:rgba(5,5,5,.72);backdrop-filter:blur(8px);
+      background:var(--topbar-bg);backdrop-filter:blur(8px);
       position:sticky;top:0;z-index:20;
     }
     .brand{display:flex;align-items:center;gap:10px;color:var(--text);text-decoration:none}
@@ -102,6 +139,21 @@
     }
     .yt-link:hover{border-color:var(--accent);color:var(--accent)}
     .yt-link .dot{width:6px;height:6px;background:var(--accent);border-radius:50%;box-shadow:0 0 8px var(--accent)}
+    .topbar-right{display:flex;align-items:center;gap:8px}
+    .theme-toggle{
+      width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;
+      border:1px solid var(--line-strong);background:var(--surface);color:var(--text);
+      font-family:'JetBrains Mono',monospace;font-size:.85rem;cursor:pointer;transition:.15s;
+      padding:0;position:relative;overflow:hidden;
+    }
+    .theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
+    .theme-toggle .icon{display:block;line-height:1;transition:transform .3s ease,opacity .2s ease}
+    .theme-toggle .icon-sun{display:none}
+    [data-theme="light"] .theme-toggle .icon-moon{display:none}
+    [data-theme="light"] .theme-toggle .icon-sun{display:block}
+    .theme-toggle:hover .icon{transform:rotate(20deg)}
+    body{transition:background-color .35s ease,color .35s ease}
+    .topbar,.track,.course,.step,.filterbar,.stat-bar,.level-bar,.chip,.btn,.yt-link,.theme-toggle,.brand-mark,.track-icon,.tag,.hero-eyebrow{transition:background-color .35s ease,color .35s ease,border-color .2s ease}
 
     /* ---- Hero ---- */
     .hero{position:relative;padding:110px 0 100px;border-bottom:1px solid var(--line)}
@@ -128,7 +180,7 @@
       font-family:'JetBrains Mono',monospace;font-size:.75rem;letter-spacing:.14em;
       text-transform:uppercase;font-weight:500;border:1px solid transparent;transition:.15s;
     }
-    .btn-primary{background:var(--accent);color:#0a0a0a;border-color:var(--accent)}
+    .btn-primary{background:var(--accent);color:var(--btn-primary-fg);border-color:var(--accent)}
     .btn-primary:hover{background:var(--accent-strong);border-color:var(--accent-strong)}
     .btn-ghost{color:var(--text);border-color:var(--line-strong);background:transparent}
     .btn-ghost:hover{border-color:var(--text)}
@@ -167,7 +219,7 @@
       background:radial-gradient(circle at 100% 0%,var(--accent-glow),transparent 60%);
       opacity:0;transition:opacity .3s;
     }
-    .track:hover{background:#0d0d0d;border-color:var(--accent)}
+    .track:hover{background:var(--surface-hover);border-color:var(--accent)}
     .track:hover::before{opacity:1}
     .track-top{display:flex;align-items:center;justify-content:space-between}
     .track-icon{
@@ -222,7 +274,7 @@
       background:var(--surface);display:flex;flex-direction:column;min-height:230px;
       transition:background .2s;position:relative;
     }
-    .course:hover{background:#0d0d0d}
+    .course:hover{background:var(--surface-hover)}
     .course-meta{display:flex;justify-content:space-between;align-items:center;gap:10px}
     .tag{
       font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;
@@ -319,9 +371,15 @@
           <a href="#biblioteca">Biblioteca</a>
           <a href="#metodo">Método</a>
         </nav>
-        <a class="yt-link" href="https://www.youtube.com/@freecodecamp" target="_blank" rel="noopener">
-          <span class="dot"></span> Canal YT <span aria-hidden="true">↗</span>
-        </a>
+        <div class="topbar-right">
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Alternar tema claro/escuro" title="Alternar tema">
+            <span class="icon icon-moon" aria-hidden="true">☾</span>
+            <span class="icon icon-sun" aria-hidden="true">☀</span>
+          </button>
+          <a class="yt-link" href="https://www.youtube.com/@freecodecamp" target="_blank" rel="noopener">
+            <span class="dot"></span> Canal YT <span aria-hidden="true">↗</span>
+          </a>
+        </div>
       </div>
     </header>
 
@@ -572,6 +630,25 @@
 
     render();
     observeReveal(document.querySelectorAll('.sys-reveal'));
+
+    // Theme toggle
+    (function(){
+      var btn = document.getElementById('themeToggle');
+      if(!btn) return;
+      function sync(){
+        var t = document.documentElement.getAttribute('data-theme') || 'dark';
+        btn.setAttribute('aria-pressed', t === 'light');
+        btn.setAttribute('aria-label', t === 'light' ? 'Ativar modo escuro' : 'Ativar modo claro');
+      }
+      sync();
+      btn.addEventListener('click', function(){
+        var cur = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+        var next = cur === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', next);
+        try{ localStorage.setItem('fccpath-theme', next); }catch(e){}
+        sync();
+      });
+    })();
   </script>
 </body>
 </html>
