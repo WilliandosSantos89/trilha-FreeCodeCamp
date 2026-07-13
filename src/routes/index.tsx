@@ -49,7 +49,7 @@ function Index() {
             href="/freecodecamp-trilhas.html"
             className="inline-flex items-center rounded-md bg-orange-600 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-orange-700"
           >
-            Abrir as trilhas
+            Começar a aprender
           </a>
         </div>
       </section>
