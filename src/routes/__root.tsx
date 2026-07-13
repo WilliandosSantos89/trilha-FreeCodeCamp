@@ -90,11 +90,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:description", content: "Caminhos de aprendizado organizados por tema para você estudar programação com o freeCodeCamp em português, sem se perder no meio do caminho." },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
   }),
   shellComponent: RootShell,
@@ -122,20 +125,35 @@ function RootComponent() {
   const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
+    try {
+      const saved = localStorage.getItem("fccpath-theme");
+      if (saved === "light") setIsDark(false);
+      else if (saved === "dark") setIsDark(true);
+    } catch {}
+  }, []);
+
+  useEffect(() => {
+    const theme = isDark ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", theme);
+    document.documentElement.classList.toggle("dark", isDark);
+    try {
+      localStorage.setItem("fccpath-theme", theme);
+    } catch {}
   }, [isDark]);
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="relative min-h-screen bg-background text-foreground transition-colors">
+      <div className="relative min-h-screen transition-colors" style={{ background: "var(--bg)", color: "var(--text)" }}>
         <header className="fixed top-0 right-0 z-50 p-4">
           <button
             onClick={() => setIsDark((d) => !d)}
-            className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-accent"
+            className="inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] transition-colors"
+            style={{
+              fontFamily: "'JetBrains Mono',monospace",
+              background: "var(--surface)",
+              color: "var(--text)",
+              border: "1px solid var(--line-strong)",
+            }}
             aria-label={isDark ? "Mudar para tema claro" : "Mudar para tema escuro"}
           >
             {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
