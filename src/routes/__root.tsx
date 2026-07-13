@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "freeCodeCamp-trilhas" },
+      { name: "description", content: "Refine & Shine analyzes documents and applies design elements from an HTML template for visual enhancement." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "freeCodeCamp-trilhas" },
+      { property: "og:description", content: "Refine & Shine analyzes documents and applies design elements from an HTML template for visual enhancement." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "freeCodeCamp-trilhas" },
+      { name: "twitter:description", content: "Refine & Shine analyzes documents and applies design elements from an HTML template for visual enhancement." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d1d70b36-7c8e-4ea7-afbb-d2070af2750b/id-preview-af00c925--f1bcd8d9-6294-4253-a4f6-dc361b892015.lovable.app-1783948807264.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d1d70b36-7c8e-4ea7-afbb-d2070af2750b/id-preview-af00c925--f1bcd8d9-6294-4253-a4f6-dc361b892015.lovable.app-1783948807264.png" },
     ],
     links: [
       {
