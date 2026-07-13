@@ -630,6 +630,25 @@
 
     render();
     observeReveal(document.querySelectorAll('.sys-reveal'));
+
+    // Theme toggle
+    (function(){
+      var btn = document.getElementById('themeToggle');
+      if(!btn) return;
+      function sync(){
+        var t = document.documentElement.getAttribute('data-theme') || 'dark';
+        btn.setAttribute('aria-pressed', t === 'light');
+        btn.setAttribute('aria-label', t === 'light' ? 'Ativar modo escuro' : 'Ativar modo claro');
+      }
+      sync();
+      btn.addEventListener('click', function(){
+        var cur = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+        var next = cur === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', next);
+        try{ localStorage.setItem('fccpath-theme', next); }catch(e){}
+        sync();
+      });
+    })();
   </script>
 </body>
 </html>
