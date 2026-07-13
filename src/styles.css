@@ -4,47 +4,47 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* ---- FCC/PATH industrial theme (shared with /freecodecamp-trilhas.html) ---- */
+/* ---- FCC/PATH industrial theme (namespaced to avoid shadcn token collisions) ---- */
 :root,
 [data-theme="dark"] {
-  --bg: #050505;
-  --surface: #0a0a0a;
-  --surface-2: #111111;
-  --line: #27272a;
-  --line-strong: #3f3f46;
-  --text: #fafafa;
-  --muted: #a1a1aa;
-  --dim: #52525b;
-  --accent: #ea580c;
-  --accent-strong: #f97316;
-  --accent-glow: rgba(234, 88, 12, 0.15);
-  --grid-line: #18181b;
-  --topbar-bg: rgba(5, 5, 5, 0.72);
-  --btn-primary-fg: #0a0a0a;
-  --grid-op: 0.35;
-  --glow-blend: screen;
+  --fcc-bg: #050505;
+  --fcc-surface: #0a0a0a;
+  --fcc-surface-2: #111111;
+  --fcc-line: #27272a;
+  --fcc-line-strong: #3f3f46;
+  --fcc-text: #fafafa;
+  --fcc-muted: #d4d4d8;
+  --fcc-dim: #a1a1aa;
+  --fcc-accent: #ea580c;
+  --fcc-accent-strong: #f97316;
+  --fcc-accent-glow: rgba(234, 88, 12, 0.18);
+  --fcc-grid-line: #1c1c1f;
+  --fcc-topbar-bg: rgba(5, 5, 5, 0.72);
+  --fcc-btn-primary-fg: #0a0a0a;
+  --fcc-grid-op: 0.35;
+  --fcc-glow-blend: screen;
 }
 [data-theme="light"] {
-  --bg: #fafaf9;
-  --surface: #ffffff;
-  --surface-2: #f4f4f5;
-  --line: #e4e4e7;
-  --line-strong: #a1a1aa;
-  --text: #0a0a0a;
-  --muted: #52525b;
-  --dim: #a1a1aa;
-  --accent: #ea580c;
-  --accent-strong: #c2410c;
-  --accent-glow: rgba(234, 88, 12, 0.14);
-  --grid-line: #e7e5e4;
-  --topbar-bg: rgba(250, 250, 249, 0.78);
-  --btn-primary-fg: #fafafa;
-  --grid-op: 0.55;
-  --glow-blend: multiply;
+  --fcc-bg: #fafaf9;
+  --fcc-surface: #ffffff;
+  --fcc-surface-2: #f4f4f5;
+  --fcc-line: #d4d4d8;
+  --fcc-line-strong: #71717a;
+  --fcc-text: #0a0a0a;
+  --fcc-muted: #27272a;
+  --fcc-dim: #52525b;
+  --fcc-accent: #c2410c;
+  --fcc-accent-strong: #9a3412;
+  --fcc-accent-glow: rgba(234, 88, 12, 0.08);
+  --fcc-grid-line: #e4e4e7;
+  --fcc-topbar-bg: rgba(250, 250, 249, 0.78);
+  --fcc-btn-primary-fg: #ffffff;
+  --fcc-grid-op: 0.35;
+  --fcc-glow-blend: multiply;
 }
 .fcc-shell {
-  background: var(--bg);
-  color: var(--text);
+  background: var(--fcc-bg);
+  color: var(--fcc-text);
   font-family: "Inter", system-ui, sans-serif;
   position: relative;
   overflow-x: hidden;
@@ -59,12 +59,12 @@
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  background-image: linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-image: linear-gradient(to right, var(--fcc-grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--fcc-grid-line) 1px, transparent 1px);
   background-size: 60px 60px;
   mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, #000 40%, transparent 90%);
   -webkit-mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, #000 40%, transparent 90%);
-  opacity: var(--grid-op);
+  opacity: var(--fcc-grid-op);
 }
 .fcc-shell .radial-glow {
   position: fixed;
@@ -74,19 +74,20 @@
   height: 900px;
   top: -320px;
   right: -260px;
-  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
-  mix-blend-mode: var(--glow-blend);
+  background: radial-gradient(circle, var(--fcc-accent-glow) 0%, transparent 60%);
+  mix-blend-mode: var(--fcc-glow-blend);
 }
 .fcc-link {
-  color: var(--muted);
+  color: var(--fcc-muted);
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: 0.15s;
 }
 .fcc-link:hover {
-  color: var(--accent);
-  border-color: var(--accent);
+  color: var(--fcc-accent);
+  border-color: var(--fcc-accent);
 }
+
 
 /*
  * Design system definition.
