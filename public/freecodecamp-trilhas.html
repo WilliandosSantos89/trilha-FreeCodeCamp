@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FCC/PATH — Trilhas de estudo do freeCodeCamp em português</title>
+  <meta name="description" content="Biblioteca industrial de cursos do freeCodeCamp organizados por trilha, nível e objetivo — do primeiro HTML ao seu primeiro projeto com IA." />
+  <meta name="author" content="FCCPATH" />
+  <meta property="og:title" content="FCC/PATH — Trilhas de estudo do freeCodeCamp" />
+  <meta property="og:description" content="Curadoria de trilhas e vídeos do freeCodeCamp em português, do primeiro HTML ao seu projeto com IA." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#050505;
+      --surface:#0a0a0a;
+      --surface-2:#111111;
+      --line:#27272a;
+      --line-strong:#3f3f46;
+      --text:#fafafa;
+      --muted:#a1a1aa;
+      --dim:#52525b;
+      --accent:#ea580c;
+      --accent-strong:#f97316;
+      --accent-glow:rgba(234,88,12,.15);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:'Inter',system-ui,sans-serif;
+      font-size:15px;
+      line-height:1.5;
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+    }
+    .mono{font-family:'JetBrains Mono',ui-monospace,monospace;letter-spacing:.02em}
+    .display{font-family:'Geist','Inter',sans-serif;letter-spacing:-.045em;line-height:.98}
+
+    /* ---- Overlays ---- */
+    .grid-overlay{
+      position:fixed;inset:0;pointer-events:none;z-index:0;
+      background-image:linear-gradient(to right,#18181b 1px,transparent 1px),
+                       linear-gradient(to bottom,#18181b 1px,transparent 1px);
+      background-size:60px 60px;
+      mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 40%,transparent 90%);
+      -webkit-mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 40%,transparent 90%);
+      opacity:.35;
+    }
+    .radial-glow{
+      position:fixed;pointer-events:none;z-index:0;
+      width:900px;height:900px;top:-320px;right:-260px;
+      background:radial-gradient(circle,var(--accent-glow) 0%,transparent 60%);
+      mix-blend-mode:screen;
+    }
+    .scanlines{
+      position:fixed;inset:0;pointer-events:none;z-index:1;
+      background:linear-gradient(rgba(18,16,16,0) 50%,rgba(0,0,0,.15) 50%),
+                 linear-gradient(90deg,rgba(255,0,0,.03),rgba(0,255,0,.01),rgba(0,0,255,.03));
+      background-size:100% 2px,3px 100%;
+      opacity:.35;
+    }
+
+    /* ---- Shell ---- */
+    .shell{position:relative;z-index:2}
+    .container{width:min(1240px,calc(100% - 40px));margin:auto}
+
+    /* ---- Topbar ---- */
+    .topbar{
+      display:flex;align-items:center;justify-content:space-between;
+      height:70px;border-bottom:1px solid var(--line);
+      background:rgba(5,5,5,.72);backdrop-filter:blur(8px);
+      position:sticky;top:0;z-index:20;
+    }
+    .brand{display:flex;align-items:center;gap:10px;color:var(--text);text-decoration:none}
+    .brand-mark{
+      display:inline-flex;align-items:center;justify-content:center;
+      width:30px;height:30px;border:1px solid var(--line-strong);
+      background:var(--surface);color:var(--accent);
+      font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:600;
+    }
+    .brand-name{font-family:'Geist',sans-serif;font-weight:700;letter-spacing:.01em;font-size:.98rem}
+    .brand-name span{color:var(--accent)}
+    .brand-name em{font-style:normal;color:var(--muted);font-weight:500}
+    nav{display:flex;gap:6px}
+    nav a{
+      font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.14em;
+      text-transform:uppercase;color:var(--muted);text-decoration:none;
+      padding:8px 12px;border:1px solid transparent;transition:.15s;
+    }
+    nav a:hover{color:var(--text);border-color:var(--line)}
+    .yt-link{
+      font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.14em;
+      text-transform:uppercase;color:var(--text);text-decoration:none;
+      border:1px solid var(--line-strong);padding:9px 14px;
+      display:inline-flex;align-items:center;gap:8px;transition:.15s;
+    }
+    .yt-link:hover{border-color:var(--accent);color:var(--accent)}
+    .yt-link .dot{width:6px;height:6px;background:var(--accent);border-radius:50%;box-shadow:0 0 8px var(--accent)}
+
+    /* ---- Hero ---- */
+    .hero{position:relative;padding:110px 0 100px;border-bottom:1px solid var(--line)}
+    .hero-eyebrow{
+      display:inline-flex;align-items:center;gap:10px;
+      font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.2em;
+      text-transform:uppercase;color:var(--accent);margin:0 0 26px;
+      padding:6px 10px;border:1px solid rgba(234,88,12,.35);background:rgba(234,88,12,.06);
+    }
+    .hero-eyebrow .pulse{width:6px;height:6px;background:var(--accent);border-radius:50%;box-shadow:0 0 10px var(--accent);animation:pulse 1.6s ease-in-out infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+    .hero h1{
+      font-family:'Geist',sans-serif;font-weight:700;
+      font-size:clamp(3rem,7.5vw,6.6rem);
+      letter-spacing:-.055em;line-height:.94;margin:0;
+    }
+    .hero h1 .accent{color:var(--accent)}
+    .hero h1 .dim{color:var(--dim)}
+    .hero-copy{max-width:580px;color:var(--muted);font-size:1.05rem;line-height:1.55;margin:34px 0 36px}
+    .hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;gap:14px;
+      padding:14px 20px;text-decoration:none;
+      font-family:'JetBrains Mono',monospace;font-size:.75rem;letter-spacing:.14em;
+      text-transform:uppercase;font-weight:500;border:1px solid transparent;transition:.15s;
+    }
+    .btn-primary{background:var(--accent);color:#0a0a0a;border-color:var(--accent)}
+    .btn-primary:hover{background:var(--accent-strong);border-color:var(--accent-strong)}
+    .btn-ghost{color:var(--text);border-color:var(--line-strong);background:transparent}
+    .btn-ghost:hover{border-color:var(--text)}
+    .btn .arrow{font-size:.9rem}
+
+    /* ---- Stats ---- */
+    .stats{margin-top:80px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .stat{padding:26px 24px;border-right:1px solid var(--line);position:relative}
+    .stat:last-child{border-right:none}
+    .stat-label{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin:0 0 12px}
+    .stat-value{font-family:'Geist',sans-serif;font-weight:600;font-size:2.2rem;color:var(--text);letter-spacing:-.03em;margin:0 0 12px}
+    .stat-bar{height:2px;background:var(--surface-2);position:relative;overflow:hidden}
+    .stat-bar span{position:absolute;inset:0;background:var(--accent);transform-origin:left;transition:transform 2.4s cubic-bezier(.22,1,.36,1);transform:scaleX(0)}
+    .stat.sys-active .stat-bar span{transform:scaleX(var(--w,.5))}
+
+    /* ---- Section base ---- */
+    .section{padding:110px 0;border-bottom:1px solid var(--line);position:relative}
+    .section-eyebrow{
+      display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.7rem;
+      letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin:0 0 18px;
+    }
+    .section-heading{display:grid;grid-template-columns:2fr 1fr;gap:60px;align-items:end;margin-bottom:56px}
+    .section h2{font-family:'Geist',sans-serif;font-weight:700;font-size:clamp(2.2rem,4.5vw,3.6rem);letter-spacing:-.045em;line-height:1;margin:0;max-width:640px}
+    .section h2 .dim{color:var(--dim)}
+    .section-heading > p{margin:0;color:var(--muted);font-size:.95rem;line-height:1.55;max-width:320px}
+
+    /* ---- Tracks ---- */
+    .tracks{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+    .track{
+      padding:28px 26px 26px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+      background:var(--surface);display:flex;flex-direction:column;min-height:220px;position:relative;
+      transition:background .2s,border-color .2s;text-decoration:none;color:inherit;overflow:hidden;
+    }
+    .track::before{
+      content:"";position:absolute;inset:0;pointer-events:none;
+      background:radial-gradient(circle at 100% 0%,var(--accent-glow),transparent 60%);
+      opacity:0;transition:opacity .3s;
+    }
+    .track:hover{background:#0d0d0d;border-color:var(--accent)}
+    .track:hover::before{opacity:1}
+    .track-top{display:flex;align-items:center;justify-content:space-between}
+    .track-icon{
+      width:36px;height:36px;border:1px solid var(--line-strong);
+      display:inline-flex;align-items:center;justify-content:center;
+      font-family:'JetBrains Mono',monospace;color:var(--text);font-size:1rem;
+      background:var(--surface-2);
+    }
+    .track:hover .track-icon{border-color:var(--accent);color:var(--accent)}
+    .track-num{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.2em;color:var(--dim)}
+    .track h3{font-family:'Geist',sans-serif;font-weight:600;font-size:1.15rem;margin:38px 0 8px;letter-spacing:-.01em}
+    .track p{margin:0;color:var(--muted);font-size:.86rem;line-height:1.5}
+    .track-cta{
+      margin-top:auto;padding-top:22px;font-family:'JetBrains Mono',monospace;
+      font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
+      display:flex;align-items:center;justify-content:space-between;
+    }
+    .track:hover .track-cta{color:var(--accent)}
+
+    /* ---- Library ---- */
+    .filterbar{
+      border:1px solid var(--line);background:var(--surface);
+      display:grid;grid-template-columns:1fr auto;gap:0;
+    }
+    .search{display:flex;align-items:center;gap:12px;padding:0 18px;border-right:1px solid var(--line)}
+    .search-icon{font-family:'JetBrains Mono',monospace;color:var(--dim);font-size:.9rem}
+    .search input{
+      flex:1;height:54px;background:none;border:0;outline:0;
+      color:var(--text);font-family:'Inter',sans-serif;font-size:.9rem;
+    }
+    .search input::placeholder{color:var(--dim)}
+    .chips{display:flex;gap:0;overflow-x:auto}
+    .chips::-webkit-scrollbar{display:none}
+    .chip{
+      font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
+      background:transparent;color:var(--muted);border:0;border-left:1px solid var(--line);
+      padding:0 18px;cursor:pointer;white-space:nowrap;transition:.15s;
+    }
+    .chip:hover{color:var(--text);background:var(--surface-2)}
+    .chip.active{color:var(--accent);background:rgba(234,88,12,.08);box-shadow:inset 0 -2px 0 var(--accent)}
+
+    .result-count{
+      font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.18em;
+      text-transform:uppercase;color:var(--dim);margin:28px 0 18px;
+      display:flex;align-items:center;gap:10px;
+    }
+    .result-count::before{content:"//";color:var(--accent)}
+
+    .course-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+    .course{
+      padding:24px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+      background:var(--surface);display:flex;flex-direction:column;min-height:230px;
+      transition:background .2s;position:relative;
+    }
+    .course:hover{background:#0d0d0d}
+    .course-meta{display:flex;justify-content:space-between;align-items:center;gap:10px}
+    .tag{
+      font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;
+      color:var(--accent);border:1px solid rgba(234,88,12,.4);padding:4px 8px;background:rgba(234,88,12,.06);
+    }
+    .level-label{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+    .course h3{font-family:'Geist',sans-serif;font-weight:600;font-size:1rem;line-height:1.3;margin:22px 0 10px;letter-spacing:-.01em}
+    .course p{margin:0;color:var(--muted);font-size:.83rem;line-height:1.5}
+    .level-bar{margin-top:18px;height:2px;background:var(--surface-2);position:relative;overflow:hidden}
+    .level-bar span{position:absolute;inset:0;background:var(--accent);transform-origin:left;transform:scaleX(0);transition:transform 2.4s cubic-bezier(.22,1,.36,1)}
+    .course.sys-active .level-bar span{transform:scaleX(var(--lvl,.33))}
+    .course-footer{margin-top:auto;padding-top:20px;display:flex;justify-content:space-between;align-items:center}
+    .course-footer .marker{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+    .watch{
+      font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;
+      color:var(--text);text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:.15s;
+    }
+    .watch:hover{color:var(--accent)}
+    .empty{padding:60px 24px;text-align:center;color:var(--muted);border-top:1px solid var(--line);grid-column:1/-1;font-family:'JetBrains Mono',monospace;font-size:.8rem}
+
+    /* ---- Method ---- */
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line);margin-top:56px}
+    .step{padding:36px 30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface);position:relative;overflow:hidden}
+    .step-num{font-family:'Geist',sans-serif;font-weight:700;font-size:3.5rem;color:var(--accent);letter-spacing:-.05em;line-height:1}
+    .step h3{font-family:'Geist',sans-serif;font-weight:600;font-size:1.15rem;margin:22px 0 10px;letter-spacing:-.01em}
+    .step p{margin:0;color:var(--muted);font-size:.9rem;line-height:1.55}
+    .step::after{content:"";position:absolute;top:0;right:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--accent),transparent);opacity:0;transition:opacity .3s}
+    .step:hover::after{opacity:.6}
+
+    /* ---- Footer ---- */
+    footer{padding:36px 0 40px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+    footer .col{display:flex;align-items:center;gap:12px;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+    footer a{color:var(--muted);text-decoration:none;border-bottom:1px solid transparent;transition:.15s}
+    footer a:hover{color:var(--accent);border-color:var(--accent)}
+
+    /* ---- sys-reveal animations (portadas do index.html) ---- */
+    @media (prefers-reduced-motion: no-preference){
+      .sys-reveal{opacity:0;transform:translateY(24px);filter:blur(4px);transition:opacity 1.6s cubic-bezier(.16,1,.3,1),transform 1.6s cubic-bezier(.16,1,.3,1),filter 1.6s ease-out;will-change:opacity,transform}
+      .sys-rise{transform:translateY(34px)}
+      .sys-slide-l{transform:translateX(-30px)}
+      .sys-slide-r{transform:translateX(30px)}
+      .sys-scale{transform:scale(.94)}
+      .sys-active{opacity:1;transform:translate(0) scale(1);filter:blur(0)}
+      .sys-delay-100{transition-delay:120ms}
+      .sys-delay-200{transition-delay:240ms}
+      .sys-delay-300{transition-delay:360ms}
+      .sys-delay-400{transition-delay:480ms}
+      .sys-delay-500{transition-delay:600ms}
+      @keyframes sys-flicker{0%{opacity:.08}6%{opacity:1}12%{opacity:.08}18%{opacity:1}100%{opacity:1}}
+      .sys-flicker{animation:sys-flicker 2s linear both;opacity:0}
+      .sys-flicker.sys-active{opacity:1}
+      @keyframes spinSlow{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+      .spin-slow{animation:spinSlow 14s linear infinite}
+    }
+
+    /* ---- Responsive ---- */
+    @media(max-width:960px){
+      .stats{grid-template-columns:repeat(2,1fr)}
+      .stat:nth-child(2){border-right:none}
+      .stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+      .section-heading{grid-template-columns:1fr;gap:24px}
+      .tracks,.course-grid,.steps{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:640px){
+      nav{display:none}
+      .yt-link{font-size:.65rem;padding:8px 10px}
+      .hero{padding:70px 0 70px}
+      .hero-copy{margin:24px 0}
+      .stats{grid-template-columns:1fr}
+      .stat{border-right:none;border-bottom:1px solid var(--line)}
+      .stat:last-child{border-bottom:none}
+      .tracks,.course-grid,.steps{grid-template-columns:1fr}
+      .filterbar{grid-template-columns:1fr}
+      .search{border-right:none;border-bottom:1px solid var(--line)}
+      .section{padding:72px 0}
+      footer{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+  <div class="grid-overlay" aria-hidden="true"></div>
+  <div class="radial-glow" aria-hidden="true"></div>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <div class="shell">
+    <header class="topbar">
+      <div class="container" style="display:flex;align-items:center;justify-content:space-between">
+        <a class="brand" href="#inicio" aria-label="FCC Path — início">
+          <span class="brand-mark">&lt;/&gt;</span>
+          <span class="brand-name">FCC<span>/</span><em>PATH</em></span>
+        </a>
+        <nav aria-label="Navegação principal">
+          <a href="#trilhas">Trilhas</a>
+          <a href="#biblioteca">Biblioteca</a>
+          <a href="#metodo">Método</a>
+        </nav>
+        <a class="yt-link" href="https://www.youtube.com/@freecodecamp" target="_blank" rel="noopener">
+          <span class="dot"></span> Canal YT <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </header>
+
+    <main id="inicio" class="container">
+      <section class="hero">
+        <p class="hero-eyebrow sys-reveal sys-flicker"><span class="pulse"></span> CURADORIA · FREECODECAMP · V.01</p>
+        <h1 class="display sys-reveal sys-rise">
+          Aprenda código.<br>
+          <span class="accent">Construa</span> <span class="dim">seu</span> caminho.
+        </h1>
+        <p class="hero-copy sys-reveal sys-delay-100">
+          Uma biblioteca industrial de cursos organizados por trilha, nível e objetivo —
+          do primeiro HTML ao seu primeiro projeto com IA. Currículo aberto, curado a partir
+          do canal do freeCodeCamp.
+        </p>
+        <div class="hero-actions sys-reveal sys-delay-200">
+          <a class="btn btn-primary" href="#trilhas">Explorar trilhas <span class="arrow">↓</span></a>
+          <a class="btn btn-ghost" href="#biblioteca">Ver biblioteca <span class="arrow">→</span></a>
+        </div>
+
+        <div class="stats" aria-label="Métricas da biblioteca">
+          <div class="stat sys-reveal sys-rise sys-delay-100" style="--w:.9">
+            <p class="stat-label">Trilhas</p>
+            <p class="stat-value">09</p>
+            <div class="stat-bar"><span></span></div>
+          </div>
+          <div class="stat sys-reveal sys-rise sys-delay-200" style="--w:.55">
+            <p class="stat-label">Níveis</p>
+            <p class="stat-value">05</p>
+            <div class="stat-bar"><span></span></div>
+          </div>
+          <div class="stat sys-reveal sys-rise sys-delay-300" style="--w:.75">
+            <p class="stat-label">Cursos base</p>
+            <p class="stat-value">18+</p>
+            <div class="stat-bar"><span></span></div>
+          </div>
+          <div class="stat sys-reveal sys-rise sys-delay-400" style="--w:1">
+            <p class="stat-label">Custo</p>
+            <p class="stat-value">R$ 0</p>
+            <div class="stat-bar"><span></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="trilhas" class="section">
+        <div class="section-heading">
+          <div>
+            <p class="section-eyebrow sys-reveal sys-flicker">// ROTEIROS GUIADOS</p>
+            <h2 class="sys-reveal sys-rise">Escolha sua <span class="dim">trilha.</span></h2>
+          </div>
+          <p class="sys-reveal sys-delay-200">Comece por uma rota e evolua com uma sequência lógica de fundamentos, prática e projetos publicáveis.</p>
+        </div>
+        <div class="tracks" id="trackGrid"></div>
+      </section>
+
+      <section id="biblioteca" class="section">
+        <div class="section-heading">
+          <div>
+            <p class="section-eyebrow sys-reveal sys-flicker">// CURSOS SELECIONADOS</p>
+            <h2 class="sys-reveal sys-rise">Biblioteca de <span class="dim">vídeos.</span></h2>
+          </div>
+          <p class="sys-reveal sys-delay-200">Use a busca e os filtros para localizar o próximo curso da sua trilha.</p>
+        </div>
+
+        <div class="filterbar sys-reveal sys-scale">
+          <label class="search">
+            <span class="search-icon">⌕</span>
+            <input id="search" type="search" placeholder="Buscar por tecnologia ou assunto..." aria-label="Buscar cursos" />
+          </label>
+          <div class="chips" id="filters" role="tablist">
+            <button class="chip active" data-filter="Todos">Todos</button>
+            <button class="chip" data-filter="Web">Web</button>
+            <button class="chip" data-filter="Front-end">Front</button>
+            <button class="chip" data-filter="Back-end">Back</button>
+            <button class="chip" data-filter="Dados">Dados</button>
+            <button class="chip" data-filter="IA">IA</button>
+            <button class="chip" data-filter="Cloud">Cloud</button>
+            <button class="chip" data-filter="CS">CS</button>
+          </div>
+        </div>
+
+        <p class="result-count" id="resultCount"></p>
+        <div class="course-grid" id="courseGrid"></div>
+      </section>
+
+      <section id="metodo" class="section">
+        <div class="section-heading">
+          <div>
+            <p class="section-eyebrow sys-reveal sys-flicker">// COMO USAR ESTA PÁGINA</p>
+            <h2 class="sys-reveal sys-rise">Aprendizado que vira <span class="dim">portfólio.</span></h2>
+          </div>
+          <p class="sys-reveal sys-delay-200">Um método simples e repetível: escolha, execute, publique. Depois, volte para a próxima trilha.</p>
+        </div>
+        <div class="steps">
+          <article class="step sys-reveal sys-rise">
+            <div class="step-num mono">01</div>
+            <h3>Escolha uma trilha</h3>
+            <p>Evite pular entre tecnologias. Foque em uma rota até concluir os fundamentos.</p>
+          </article>
+          <article class="step sys-reveal sys-rise sys-delay-100">
+            <div class="step-num mono">02</div>
+            <h3>Assista e pratique</h3>
+            <p>Pause os vídeos, replique cada exemplo em código próprio e registre dúvidas.</p>
+          </article>
+          <article class="step sys-reveal sys-rise sys-delay-200">
+            <div class="step-num mono">03</div>
+            <h3>Publique um projeto</h3>
+            <p>Transforme o conteúdo em um case no GitHub e um post no LinkedIn.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="container">
+      <div class="col"><span class="brand-mark" style="width:22px;height:22px;font-size:.6rem">&lt;/&gt;</span> FCC/PATH · Central de estudos</div>
+      <div class="col">Vídeos: <a href="https://www.youtube.com/@freecodecamp" target="_blank" rel="noopener">freeCodeCamp.org ↗</a></div>
+      <div class="col">V.01 · 2026</div>
+    </footer>
+  </div>
+
+  <script>
+    const tracks = [
+      ['◐','01','Fundamentos Web','HTML, CSS, responsividade e acessibilidade.','Web'],
+      ['◇','02','JavaScript e Front-end','JavaScript, React, TypeScript e Next.js.','Front-end'],
+      ['▤','03','Back-end e APIs','Node.js, bancos de dados e APIs REST.','Back-end'],
+      ['⌘','04','Python e Dados','Python, SQL, Pandas e visualização.','Dados'],
+      ['✦','05','IA e Machine Learning','ML, deep learning, LLMs e automação.','IA'],
+      ['◈','06','Ciência da Computação','Algoritmos, estruturas de dados e lógica.','CS'],
+      ['☁','07','DevOps, Cloud e Segurança','Linux, Docker, cloud e deploy.','Cloud'],
+      ['▣','08','Projetos e Portfólio','Aplicações reais para publicar e apresentar.','Projetos'],
+      ['↗','09','Carreira e Ferramentas','GitHub, produtividade e carreira dev.','Carreira'],
+    ];
+
+    const levelMap = { 'Nível 1': .33, 'Nível 2': .66, 'Nível 3': 1 };
+
+    const courses = [
+      ['HTML Full Course - Build a Website Tutorial','Web','Nível 1','Estrutura semântica, formulários e páginas web.','https://www.youtube.com/watch?v=pQN-pnXPaVg'],
+      ['CSS Full Course - Flexbox & Grid','Web','Nível 1','Estilização, layouts responsivos, Flexbox e Grid.','https://www.youtube.com/watch?v=ieTHC78giGQ'],
+      ['JavaScript Full Course for Beginners','Front-end','Nível 1','Fundamentos da linguagem e lógica para web.','https://www.youtube.com/watch?v=PkZNo7MFNFg'],
+      ['JavaScript DOM Manipulation','Front-end','Nível 2','Eventos, elementos e interações no navegador.','https://www.youtube.com/watch?v=5fb2aPlgoys'],
+      ['React Course - Beginner’s Tutorial','Front-end','Nível 3','Componentes, estado, props e aplicações React.','https://www.youtube.com/watch?v=bMknfKXIFA8'],
+      ['TypeScript Course for Beginners','Front-end','Nível 3','Tipagem estática aplicada ao JavaScript.','https://www.youtube.com/watch?v=30LWjhZzg50'],
+      ['Node.js and Express.js - Full Course','Back-end','Nível 2','Servidores, rotas e APIs REST com JavaScript.','https://www.youtube.com/watch?v=Oe421EPjeBE'],
+      ['SQL Tutorial - Full Database Course','Back-end','Nível 2','Consultas, modelagem e bancos de dados relacionais.','https://www.youtube.com/watch?v=HXV3zeQKqGY'],
+      ['MongoDB Tutorial - Full Course','Back-end','Nível 3','Banco NoSQL e integração em aplicações.','https://www.youtube.com/watch?v=c2M-rlkkT5o'],
+      ['Python for Beginners - Full Course','Dados','Nível 1','Sintaxe, funções, coleções e fundamentos de Python.','https://www.youtube.com/watch?v=rfscVS0vtbw'],
+      ['Python for Data Science','Dados','Nível 2','Pandas, NumPy, Matplotlib e projeto de análise.','https://www.youtube.com/watch?v=LHBE6Q9XlzI'],
+      ['Data Analysis with Python','Dados','Nível 3','Fluxo de análise, limpeza e interpretação de dados.','https://www.youtube.com/watch?v=r-uOLxNrNk8'],
+      ['Machine Learning for Everybody','IA','Nível 1','Visão geral de modelos, dados e aprendizado de máquina.','https://www.youtube.com/watch?v=i_LwzRVP7bg'],
+      ['Python Machine Learning Tutorial','IA','Nível 2','Construção prática de modelos com Python.','https://www.youtube.com/watch?v=7eh4d6sabA0'],
+      ['Docker Course for Beginners','Cloud','Nível 1','Containers, imagens e ambientes reproduzíveis.','https://www.youtube.com/watch?v=fqMOX6JJhGo'],
+      ['Git and GitHub for Beginners','Cloud','Nível 1','Versionamento, branches, commits e colaboração.','https://www.youtube.com/watch?v=RGOj5yH7evk'],
+      ['Data Structures and Algorithms','CS','Nível 2','Estruturas fundamentais e resolução de problemas.','https://www.youtube.com/watch?v=RBSGKlAvoiM'],
+      ['Responsive Web Design Certification','Web','Nível 2','Projetos práticos para consolidar HTML e CSS.','https://www.youtube.com/watch?v=HGTJBPNC-Gw'],
+    ];
+
+    const trackGrid = document.querySelector('#trackGrid');
+    trackGrid.innerHTML = tracks.map((t, i) => {
+      const delay = ['', 'sys-delay-100', 'sys-delay-200', 'sys-delay-300'][i % 4];
+      return `<a class="track sys-reveal sys-rise ${delay}" href="#biblioteca" data-go="${t[4]}">
+        <div class="track-top">
+          <span class="track-icon">${t[0]}</span>
+          <span class="track-num">TRILHA · ${t[1]}</span>
+        </div>
+        <h3>${t[2]}</h3>
+        <p>${t[3]}</p>
+        <div class="track-cta"><span>Ver cursos</span><span>→</span></div>
+      </a>`;
+    }).join('');
+
+    const courseGrid = document.querySelector('#courseGrid');
+    const countEl = document.querySelector('#resultCount');
+    const searchInput = document.querySelector('#search');
+    let activeFilter = 'Todos';
+
+    function render() {
+      const q = searchInput.value.toLowerCase();
+      const filtered = courses.filter(c =>
+        (activeFilter === 'Todos' || c[1] === activeFilter) &&
+        (c[0] + ' ' + c[1] + ' ' + c[3]).toLowerCase().includes(q)
+      );
+      countEl.textContent = `${String(filtered.length).padStart(2, '0')} cursos encontrados · filtro: ${activeFilter}`;
+
+      if (!filtered.length) {
+        courseGrid.innerHTML = '<div class="empty">// nenhum curso encontrado. tente outro termo.</div>';
+        return;
+      }
+
+      courseGrid.innerHTML = filtered.map((c, i) => {
+        const delay = ['', 'sys-delay-100', 'sys-delay-200'][i % 3];
+        const lvl = levelMap[c[2]] || .5;
+        const n = String(i + 1).padStart(2, '0');
+        return `<article class="course sys-reveal sys-rise ${delay}" style="--lvl:${lvl}">
+          <div class="course-meta">
+            <span class="tag">${c[1]}</span>
+            <span class="level-label">${c[2]}</span>
+          </div>
+          <h3>${c[0]}</h3>
+          <p>${c[3]}</p>
+          <div class="level-bar"><span></span></div>
+          <div class="course-footer">
+            <span class="marker">CURSO · ${n}</span>
+            <a class="watch" href="${c[4]}" target="_blank" rel="noopener">Assistir <span>↗</span></a>
+          </div>
+        </article>`;
+      }).join('');
+
+      // observar novos elementos criados
+      observeReveal(courseGrid.querySelectorAll('.sys-reveal'));
+    }
+
+    // Filtros
+    document.querySelectorAll('.chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelector('.chip.active')?.classList.remove('active');
+        btn.classList.add('active');
+        activeFilter = btn.dataset.filter;
+        render();
+      });
+    });
+    searchInput.addEventListener('input', render);
+
+    // Deep link trilha → filtro
+    document.addEventListener('click', e => {
+      const a = e.target.closest('[data-go]');
+      if (!a) return;
+      const label = a.dataset.go;
+      const chip = [...document.querySelectorAll('.chip')].find(x => x.dataset.filter === label);
+      if (chip) chip.click();
+    });
+
+    // IntersectionObserver para sys-reveal
+    const io = 'IntersectionObserver' in window
+      ? new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('sys-active');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' })
+      : null;
+
+    function observeReveal(nodes) {
+      if (!io) { nodes.forEach(n => n.classList.add('sys-active')); return; }
+      nodes.forEach(n => io.observe(n));
+    }
+
+    render();
+    observeReveal(document.querySelectorAll('.sys-reveal'));
+  </script>
+</body>
+</html>
