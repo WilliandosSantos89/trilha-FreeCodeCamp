@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "sdk_version": "0.20.1",
+  "path": "/mcp",
+  "auth": {
+    "type": "none"
+  },
+  "mcp": {
+    "server": {
+      "name": "freecodecamp-trilhas-mcp",
+      "version": "0.1.0",
+      "title": "freeCodeCamp Trilhas MCP"
+    },
+    "tools": [
+      {
+        "name": "list_trilhas",
+        "title": "Listar trilhas",
+        "description": "Lista as trilhas de estudo curadas do freeCodeCamp em português, com título, descrição, tópicos e URL da página onde estão publicadas.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_trilha",
+        "title": "Detalhar trilha",
+        "description": "Retorna os detalhes de uma trilha específica pelo slug (por exemplo, 'desenvolvimento-web' ou 'fundamentos-programacao').",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "slug": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Slug da trilha, conforme retornado por list_trilhas."
+            }
+          },
+          "required": [
+            "slug"
+          ]
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
