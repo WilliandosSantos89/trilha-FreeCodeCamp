@@ -23,24 +23,21 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <main
-      className="min-h-screen"
-      style={{ backgroundColor: "#fcfbf8", color: "#0a0a0a" }}
-    >
-      <section className="mx-auto max-w-3xl px-6 py-20">
-        <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-orange-700">
+    <main className="min-h-screen bg-background text-foreground transition-colors">
+      <section className="mx-auto max-w-3xl px-6 py-20 pt-28">
+        <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-orange-500">
           freeCodeCamp · Português
         </p>
         <h1 className="text-4xl font-bold leading-tight sm:text-5xl">
           Trilhas de Estudo do freeCodeCamp
         </h1>
-        <p className="mt-6 text-lg leading-relaxed text-neutral-700">
+        <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
           Este projeto reúne trilhas de estudo curadas para quem quer aprender
           programação com o freeCodeCamp em português. Cada trilha organiza
           cursos, vídeos e projetos em uma sequência lógica, do zero ao
           avançado, para você saber exatamente o próximo passo a dar.
         </p>
-        <p className="mt-4 text-lg leading-relaxed text-neutral-700">
+        <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
           A ideia é resolver um problema comum de quem começa sozinho: o excesso
           de conteúdo espalhado. Em vez de escolher aleatoriamente por onde
           começar, você segue uma trilha temática: desenvolvimento web,
@@ -54,12 +51,6 @@ function Index() {
           >
             Abrir as trilhas
           </a>
-          <Link
-            to="/"
-            className="ml-3 inline-flex items-center rounded-md border border-neutral-300 bg-white px-5 py-3 text-sm font-semibold text-neutral-900 hover:bg-neutral-50"
-          >
-            Saiba mais
-          </Link>
         </div>
       </section>
     </main>
