@@ -1,0 +1,8 @@
+# freeCodeCamp Trilhas
+
+> Trilhas de estudo curadas do freeCodeCamp em português — caminhos guiados por cursos, vídeos e projetos para aprender programação do zero ao avançado.
+
+## Pages
+
+- [Home](/): Visão geral do projeto e ponto de entrada para as trilhas.
+- [Trilhas do freeCodeCamp](/freecodecamp-trilhas.html): Página estática com todas as trilhas de estudo organizadas por tema, com filtros, marcos e links diretos para o material oficial.
