@@ -164,57 +164,64 @@ function Index() {
 function CreditsFooter() {
   return (
     <footer
-      className="relative z-[2] mx-auto mt-8 flex w-[min(1240px,calc(100%-40px))] flex-col gap-4 border-t py-9 md:flex-row md:items-center md:justify-between"
-      style={{
-        borderColor: "var(--fcc-line)",
-        fontFamily: "'JetBrains Mono',monospace",
-        fontSize: ".7rem",
-        letterSpacing: ".14em",
-        textTransform: "uppercase",
-        color: "var(--fcc-dim)",
-      }}
+      className="relative z-[2] mx-auto mt-8 w-[min(1240px,calc(100%-40px))] border-t py-9"
+      style={{ borderColor: "var(--fcc-line)" }}
     >
-      <div className="flex items-center gap-3">
-        <span
-          className="inline-flex h-[22px] w-[22px] items-center justify-center border text-[.6rem]"
-          style={{ borderColor: "var(--fcc-line-strong)", color: "var(--fcc-accent)", background: "var(--fcc-surface)" }}
+      <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+        <div
+          className="flex flex-col gap-3 sm:flex-row sm:items-center"
+          style={{
+            fontFamily: "'JetBrains Mono',monospace",
+            fontSize: ".7rem",
+            letterSpacing: ".14em",
+            textTransform: "uppercase",
+            color: "var(--fcc-dim)",
+          }}
         >
-          {"</>"}
-        </span>
-        FCC/PATH · Central de estudos
-      </div>
-      <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-        <span>
-          Vídeos:{" "}
-          <a
-            href="https://www.youtube.com/@freecodecamp"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="fcc-link"
-          >
-            freeCodeCamp.org ↗
-          </a>
-        </span>
-        <span>
-          Curadoria:{" "}
-          <a
-            href="https://github.com/WilliandosSantos89"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="fcc-link"
-          >
-            GitHub ↗
-          </a>
-          {" · "}
-          <a
-            href="https://www.linkedin.com/in/williandossantos89"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="fcc-link"
-          >
-            LinkedIn ↗
-          </a>
-        </span>
+          <div className="flex items-center gap-3">
+            <span
+              className="inline-flex h-[22px] w-[22px] items-center justify-center border text-[.6rem]"
+              style={{ borderColor: "var(--fcc-line-strong)", color: "var(--fcc-accent)", background: "var(--fcc-surface)" }}
+            >
+              {"</>"}
+            </span>
+            FCC/PATH · Central de estudos
+          </div>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <span>
+              Vídeos:{" "}
+              <a
+                href="https://www.youtube.com/@freecodecamp"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="fcc-link"
+              >
+                freeCodeCamp.org ↗
+              </a>
+            </span>
+            <span>
+              Curadoria:{" "}
+              <a
+                href="https://github.com/WilliandosSantos89"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="fcc-link"
+              >
+                GitHub ↗
+              </a>
+              {" · "}
+              <a
+                href="https://www.linkedin.com/in/williandossantos89"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="fcc-link"
+              >
+                LinkedIn ↗
+              </a>
+            </span>
+          </div>
+        </div>
+        <SocialLinks />
       </div>
     </footer>
   );
