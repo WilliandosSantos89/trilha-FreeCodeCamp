@@ -4,17 +4,17 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "FCC/PATH — Trilhas de Estudo do freeCodeCamp em Português" },
+      { title: "Trilhas de Estudo do freeCodeCamp em Português" },
       {
         name: "description",
         content:
           "Trilhas de estudo curadas do freeCodeCamp em português: caminhos guiados por cursos, vídeos e projetos para aprender programação do zero ao avançado.",
       },
-      { property: "og:title", content: "FCC/PATH — Trilhas de Estudo do freeCodeCamp" },
+      { property: "og:title", content: "Trilhas de Estudo do freeCodeCamp em Português" },
       {
         property: "og:description",
         content:
-          "Curadoria de trilhas e vídeos do freeCodeCamp em português, do primeiro HTML ao seu projeto com IA.",
+          "Trilhas de estudo curadas do freeCodeCamp em português: caminhos guiados por cursos, vídeos e projetos para aprender programação do zero ao avançado.",
       },
       { property: "og:url", content: "https://trilha-freecodecamp.lovable.app/" },
     ],
