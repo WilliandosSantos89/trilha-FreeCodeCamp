@@ -28,6 +28,6 @@ Abra `http://localhost:8080`.
 ## Créditos
 
 - **Conteúdo e vídeos:** [freeCodeCamp.org](https://www.youtube.com/@freecodecamp)
-- **Curadoria e desenvolvimento:** Willian dos Santos — [GitHub](https://github.com/WilliandosSantos89) · [LinkedIn](https://www.linkedin.com/in/williandossantos89)
+- **Curadoria e desenvolvimento:** Willian dos Santos — [GitHub](https://github.com/WilliandosSantos89) · [LinkedIn](https://www.linkedin.com/in/willian-dos-santos/)
 
 Projeto de portfólio construído com [Lovable](https://lovable.dev).
