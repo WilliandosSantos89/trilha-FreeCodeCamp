@@ -668,6 +668,22 @@
         sync();
       });
     })();
+
+    // Back to top
+    (function(){
+      var btn = document.getElementById('backToTop');
+      if(!btn) return;
+      function onScroll(){
+        var y = window.scrollY || document.documentElement.scrollTop;
+        if(y > 320) btn.classList.add('visible');
+        else btn.classList.remove('visible');
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+      btn.addEventListener('click', function(){
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
   </script>
 </body>
 </html>
