@@ -126,7 +126,7 @@ function CreditsFooter() {
           </a>
           {" · "}
           <a
-            href="https://www.linkedin.com/in/williandossantos89"
+            href="https://www.linkedin.com/in/willian-dos-santos/"
             target="_blank"
             rel="noopener noreferrer"
             className="fcc-link"
